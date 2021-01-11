@@ -16,7 +16,6 @@ pipeline {
                   sh 'cp Dockerfile images/'
                   sh 'cp manage.py images/'
                   sh 'cp requirements.txt images/'
-                  sh 'cp -avr env/ images/'
                   sh 'cp -avr app/ images/'
                   sh 'cp .gitignore images/'
                   sh 'docker build --tag=${APP_NAME} images/.'
