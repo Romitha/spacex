@@ -2,7 +2,7 @@ pipeline {
     environment {
    	 PROJECT = "spacex"
  	   APP_NAME = "spacexapi"
-   	 IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+   	 IMAGE_TAG = "janith/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
                 }
     agent any 
     options {
@@ -18,12 +18,12 @@ pipeline {
                   sh 'cp requirements.txt images/'
                   sh 'cp -avr app/ images/'
                   sh 'cp .gitignore images/'
-                  sh 'docker build --tag=${APP_NAME} images/.'
-                  sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
-                  sh 'docker login -u janith -p Janith0771818404'
-                  sh 'docker push ${IMAGE_TAG}'
-                  sh 'docker image rm ${IMAGE_TAG}'
-                  sh 'docker image rm ${APP_NAME}'
+                  sh 'sudo docker build --tag=${APP_NAME} images/.'
+                  sh 'sudo docker tag ${APP_NAME} ${IMAGE_TAG}'
+                  sh 'sudo docker login -u janith -p Janith0771818404'
+                  sh 'sudo docker push ${IMAGE_TAG}'
+                  sh 'sudo docker image rm ${IMAGE_TAG}'
+                  sh 'sudo docker image rm ${APP_NAME}'
                   sh 'rm -rf images/'			
                     }
                                          }
