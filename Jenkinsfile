@@ -2,7 +2,7 @@ pipeline {
     environment {
    	 PROJECT = "spacex"
  	   APP_NAME = "spacexapi"
-   	 IMAGE_TAG = "janith/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+   	 IMAGE_TAG = "janith/${PROJECT}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
                 }
     agent any 
     options {
