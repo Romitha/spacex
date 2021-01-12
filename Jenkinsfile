@@ -18,7 +18,7 @@ pipeline {
                   sh 'cp requirements.txt images/'
                   sh 'cp -avr app/ images/'
                   sh 'cp .gitignore images/'
-                  sh 'sudo docker build -t ${APP_NAME} images/.'
+                  sh 'docker build -t ${APP_NAME} images/.'
                   sh 'sudo docker tag ${APP_NAME} ${IMAGE_TAG}'
                   sh 'sudo docker login -u janith -p Janith0771818404'
                   sh 'sudo docker push ${IMAGE_TAG}'
