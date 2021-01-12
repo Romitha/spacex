@@ -34,18 +34,18 @@ pipeline {
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python-deploy
+  name: spacex-deploy
 spec:
   selector:
     matchLabels:
-      app: python-stage
-      department: python-app
+      app: spacex-stage
+      department: spacex-app
   replicas: 2
   template:
     metadata:
       labels:
-        app: python-stage
-        department: python-app
+        app: spacex-stage
+        department: spacex-app
     spec:
       containers:
       - name: hello
@@ -58,39 +58,38 @@ EOF'''
 apiVersion: v1
 kind: Service
 metadata:
-  name: data-m-catalogue-mongo-service
+  name: spacex-service
 spec:
   type: LoadBalancer
   selector:
-    app: python-stage
-    department: python-app
+    app: spacex-stage
+    department: spacex-app
   ports:
   - protocol: TCP
     port: 5000
     targetPort: 5000
 EOF'''         
-                  sh 'gcloud auth activate-service-account --key-file /root/.m2/dmpipelinedevelopment-f9412485c45a.json'
-                  sh 'gcloud config set compute/zone asia-southeast1-c'
-                  sh 'gcloud config set project dmpipelinedevelopment'
-                  sh 'gcloud container clusters get-credentials standard-cluster-1 --zone asia-southeast1-c --project dmpipelinedevelopment'
+                  sh 'gcloud auth activate-service-account --key-file /var/lib/jenkins/.certificate/slwidgets-fd89f6333e67.json'
+                  sh 'gcloud config set compute/zone asia-southeast1-b'
+                  sh 'gcloud config set project slwidgets'
+                  sh 'gcloud container clusters get-credentials standard-cluster-1 --zone asia-southeast1-b --project slwidgets'
                   sh 'export KUBECONFIG=$(pwd)/config'
                   sh 'kubectl get nodes'
                   // sh 'kubectl create ns production'
                   sh 'kubectl  apply -f deployment.yaml'
                   sh 'kubectl  apply -f service.yaml'
-                  sh 'kubectl  get service data-m-catalogue-mongo-service'
                     }
                                 }
 
            }
            post {
               always {
-                 mail to: 'janith.algewatta@inovaitsys.com',
+                 mail to: 'janith2011@gmail.com',
                           subject: "Success Pipeline: ${currentBuild.fullDisplayName}",
                           body: "${PROJECT}/${APP_NAME}/${env.BRANCH_NAME}/${env.BUILD_NUMBER}"
                      }
               failure {
-                    mail to: 'ravi.aluthge@inovaitsys.com',
+                    mail to: 'janith2011@gmail.com',
                           subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                           body: "Something is wrong with ${env.BUILD_URL}"
                       }
