@@ -77,7 +77,7 @@ EOF'''
                   sh 'kubectl get nodes'
                   // sh 'kubectl create ns production'
                   sh 'kubectl  apply -f deployment.yaml'
-                  sh 'kubectl  apply -f service.yaml'
+                  // sh 'kubectl  apply -f service.yaml'
                     }
                                 }
 
