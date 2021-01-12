@@ -2,6 +2,7 @@ pipeline {
     environment {
    	 PROJECT = "spacex"
  	   APP_NAME = "spacexapi"
+     BRANCH_NAME = "main"
    	 IMAGE_TAG = "janith/${PROJECT}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
                 }
     agent any 
@@ -19,11 +20,11 @@ pipeline {
                   sh 'cp -avr app/ images/'
                   sh 'cp .gitignore images/'
                   sh 'docker build -t ${APP_NAME} images/.'
-                  sh 'sudo docker tag ${APP_NAME} ${IMAGE_TAG}'
-                  sh 'sudo docker login -u janith -p Janith0771818404'
-                  sh 'sudo docker push ${IMAGE_TAG}'
-                  sh 'sudo docker image rm ${IMAGE_TAG}'
-                  sh 'sudo docker image rm ${APP_NAME}'
+                  sh 'docker tag ${APP_NAME} ${IMAGE_TAG}'
+                  sh 'docker login -u janith -p Janith0771818404'
+                  sh 'docker push ${IMAGE_TAG}'
+                  sh 'docker image rm ${IMAGE_TAG}'
+                  sh 'docker image rm ${APP_NAME}'
                   sh 'rm -rf images/'			
                     }
                                          }
