@@ -41,3 +41,14 @@ class TimerDto:
         'device_id': fields.Integer(required=True, description='device_id')
 
     })
+
+class SatelliteDto:
+    api = Namespace('Satellite', description='Satellite related operations')
+    satellite = api.model('Satellite', {
+        'id': fields.Integer(required=False, description='Timer table primary_key'),
+        'satellite_name': fields.String(required=True, description='satellite_name'),
+        'address': fields.String(required=True, description='address'),
+        'is_active': fields.Integer(required=True, description='is_active'),
+        'user_id': fields.Integer(required=True, description='user_id')
+
+    })

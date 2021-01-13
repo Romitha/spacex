@@ -20,10 +20,10 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{server}/{database}'.format(user='janith',
-                                                                                                    password='Janith0771818404',
-                                                                                                    server='127.0.0.1',
-                                                                                                    database='clockodillo')
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{server}/{database}'.format(user='root',
+                                                                                                    password='Janith@0771818404',
+                                                                                                    server='34.87.118.229',
+                                                                                                    database='spacex')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = 'xchenage.io'
     SECURITY_PASSWORD_SALT = 'my_precious_two'
