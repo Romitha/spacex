@@ -131,7 +131,7 @@ def orbit_satellite(auth_header, id):
 
     if satellite:
         response_object = {
-            'status': 'success',
+            'status': 'success with orbit',
             'orbit-check': random.random(),
         }
         return response_object, 200
